@@ -1,0 +1,13 @@
+{
+    "id" : "#number",
+    "title" : "#string",
+    "price" : "#number",
+    "rating" : "#number",
+    "stock" : "#number",
+    "description": "#string",
+    "category" : "#string",
+    "discountPercentage" : "#number",
+    "tags" : "#[] #string",
+     "availabilityStatus" : "#string"
+
+}
