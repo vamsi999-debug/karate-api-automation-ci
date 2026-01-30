@@ -5,7 +5,7 @@ pipeline {
       image 'maven:3.9-eclipse-temurin-17'
 
       // Reuse Maven dependency cache between builds (faster)
-      args '-v $HOME/.m2:/root/.m2'
+      args '-v maven_repo:/root/.m2'
     }
   }
 
