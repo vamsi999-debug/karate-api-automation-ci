@@ -85,7 +85,7 @@ pipeline {
                 --suite-id "$TESTRAIL_SUITE" \
                 --title "Karate API Run - ${JOB_NAME} #${BUILD_NUMBER}" \
                 --close-run \
-                -f "target/surefire-reports/*.xml"
+                -f target/surefire-reports/*.xml
 
         '''
       }
