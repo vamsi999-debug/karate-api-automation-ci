@@ -78,15 +78,15 @@ pipeline {
           pip install --upgrade trcli
 
           trcli -y \
-                --host "$TESTRAIL_URL" \
+                --h "$TESTRAIL_URL" \
+                --project "$TESTRAIL_PROJECT" \
                 --username "$TESTRAIL_USER" \
                 --password "$TESTRAIL_KEY" \
                 parse_junit \
-                --project "$TESTRAIL_PROJECT" \
-                --suite-id "$TESTRAIL_SUITE" \
+                -f target/surefire-reports/*.xml \
                 --title "Karate API Run - ${JOB_NAME} #${BUILD_NUMBER}" \
                 --close-run \
-                -f target/surefire-reports/*.xml
+
 
         '''
       }
