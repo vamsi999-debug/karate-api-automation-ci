@@ -4,8 +4,8 @@ pipeline {
       // Linux container with Maven and Java already installed
       image 'maven:3.9-eclipse-temurin-17'
 
-      // Reuse Maven dependency cache between builds (faster)
-      args '-v maven_repo:/root/.m2'
+      // Run container as root (required for apt-get) and reuse Maven cache via mounted volume
+      args '--user root -v maven_repo:/root/.m2'
     }
   }
 
