@@ -77,10 +77,11 @@ pipeline {
           pip install --upgrade pip
           pip install --upgrade trcli
 
-          trcli -y parse_junit \
+          trcli -y \
                 --host "$TESTRAIL_URL" \
                 --username "$TESTRAIL_USER" \
                 --password "$TESTRAIL_KEY" \
+                parse_junit \
                 --project "$TESTRAIL_PROJECT" \
                 --suite-id "$TESTRAIL_SUITE" \
                 --title "Karate API Run - ${JOB_NAME} #${BUILD_NUMBER}" \
