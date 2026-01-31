@@ -82,11 +82,10 @@ pipeline {
                 --username "$TESTRAIL_USER" \
                 --password "$TESTRAIL_KEY" \
                 --project "$TESTRAIL_PROJECT" \
-                
                 parse_junit \
                 -f target/surefire-reports/*.xml \
                 --title "Karate API Run - ${JOB_NAME} #${BUILD_NUMBER}" \
-                --close-run \
+                --close-run
 
 
         '''
