@@ -18,6 +18,13 @@ pipeline {
   environment {
     //injected through jenkins credentials manager
     GOREST_TOKEN = credentials('gorest-token')
+    TESTRAIL_USER = credentials('testrail-user')
+    TESTRAIL_KEY  = credentials('testrail-api-key')
+
+    TESTRAIL_URL     = 'https://vamsiv06.testrail.io/'
+    TESTRAIL_PROJECT = 'API AUTOMATION(GO REST)'
+    TESTRAIL_SUITE   = 6
+
   }
 
   stages {
