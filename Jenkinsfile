@@ -21,7 +21,7 @@ pipeline {
     TESTRAIL_USER = credentials('testrail-user')
     TESTRAIL_KEY  = credentials('testrail-api-key')
 
-    TESTRAIL_URL     = 'https://vamsiv06.testrail.io/'
+    TESTRAIL_URL     = 'https://vamsiv06.testrail.io'
     TESTRAIL_PROJECT = 'API AUTOMATION(GO REST)'
     TESTRAIL_SUITE   = 6
 
@@ -74,17 +74,19 @@ pipeline {
           . .venv/bin/activate
 
         # Upgrade pip inside venv and install TRCLI
-          python3 -m pip install --upgrade pip
-          python3 -m pip install --upgrade trcli
+          pip install --upgrade pip
+          pip install --upgrade trcli
 
-          trcli --url "$TESTRAIL_URL" \
-                --user "$TESTRAIL_USER" \
-                --key "$TESTRAIL_KEY" \
+          trcli -y parse_junit \
+                --host "$TESTRAIL_URL" \
+                --username "$TESTRAIL_USER" \
+                --password "$TESTRAIL_KEY" \
                 --project "$TESTRAIL_PROJECT" \
-                --suite "$TESTRAIL_SUITE" \
-                --run-name "Karate API Run - ${JOB_NAME} #${BUILD_NUMBER}" \
-                --results "target/surefire-reports/*.xml" \
-                --close-run
+                --suite-id "$TESTRAIL_SUITE" \
+                --title "Karate API Run - ${JOB_NAME} #${BUILD_NUMBER}" \
+                --close-run \
+                -f "target/surefire-reports/*.xml"
+
         '''
       }
     }
