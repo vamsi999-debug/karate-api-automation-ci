@@ -10,9 +10,10 @@ Background:
     #================================================
 
 @createUser
+@C38
 Scenario: Create user (reusable)
   # pass whatever came in; if nothing came, __arg is empty and factory uses defaults
-   * def args = karate.get('__arg', {})
+  * def args = karate.get('__arg', {})
   * def build = call read('classpath:features/helpers/userPayloadFactory.feature@payloadFactory') args
   * def payload = build.result.payload
 
@@ -39,10 +40,10 @@ Examples:
 
  Scenario: Duplicate email should fail
 
-   * def created = call read('classpath:features/Users/createUser.feature@createUser')
-   * print created.response
-   * def email = created.response.email
-   * def payload =
+  * def created = call read('classpath:features/Users/createUser.feature@createUser')
+  * print created.response
+  * def email = created.response.email
+  * def payload =
    """
    {
       name: 'Valid User',
@@ -51,32 +52,32 @@ Examples:
       status: #(created.response.status)
    }
    """
-   * request payload
-   * method post
-   * status 422
-   * match response[*].message contains 'has already been taken'
+  * request payload
+  * method post
+  * status 422
+  * match response[*].message contains 'has already been taken'
 
 
    Scenario Outline: Missing <field> should fail with validation error
 
-   * def build = call read('classpath:features/helpers/userPayloadFactory.feature@payloadFactory')
+  * def build = call read('classpath:features/helpers/userPayloadFactory.feature@payloadFactory')
 
       # copy base payload
 
-   * def clone =
+  * def clone =
 """
 function(obj){
   return JSON.parse(JSON.stringify(obj));
 }
 """
-* def payload = clone(build.result.payload)
+  * def payload = clone(build.result.payload)
 
-   * remove payload.<field>
-   * request payload
-   * method post
-   * status 422
-   * match response[*].field contains '<field>'
-   * match each response[*].message contains "can't be blank"
+  * remove payload.<field>
+  * request payload
+  * method post
+  * status 422
+  * match response[*].field contains '<field>'
+  * match each response[*].message contains "can't be blank"
 
    Examples:
    |field|
@@ -88,22 +89,22 @@ function(obj){
 
    Scenario Outline: Validate Mandatory Field <field> with invalid input
 
-   * def build = call read('classpath:features/helpers/userPayloadFactory.feature@payloadFactory')
-   * def clone =
+  * def build = call read('classpath:features/helpers/userPayloadFactory.feature@payloadFactory')
+  * def clone =
    """
    function(data){
       return JSON.parse(JSON.stringify(data))
    }
    """
-   * def payload = clone(build.result.payload)
+  * def payload = clone(build.result.payload)
 
    # set inavalid data for exisiting field
-   * set payload.<field> = <badValue>
-   * request payload
-   * method post
-   * status 422
-   * match response[*].field contains '<field>'
-   * match each response[*].message contains "can't be blank"
+  * set payload.<field> = <badValue>
+  * request payload
+  * method post
+  * status 422
+  * match response[*].field contains '<field>'
+  * match each response[*].message contains "can't be blank"
 
    Examples:
 | field  | badValue |
@@ -123,20 +124,20 @@ function(obj){
 
    Scenario Outline: Validate The Email Field with Invalid Format <email>
 
- *  def build = call read('classpath:features/helpers/userPayloadFactory.feature@payloadFactory')
- * def clone =
+  *  def build = call read('classpath:features/helpers/userPayloadFactory.feature@payloadFactory')
+  * def clone =
    """
    function(data){
       return JSON.parse(JSON.stringify(data))
    }
    """
-   * def payload = clone(build.result.payload)
- * set payload.email = '<email>'
- * request payload
- * method post
- * status 422
- * match response[*].field contains 'email'
- * match each response[*].message contains 'is invalid'
+  * def payload = clone(build.result.payload)
+  * set payload.email = '<email>'
+  * request payload
+  * method post
+  * status 422
+  * match response[*].field contains 'email'
+  * match each response[*].message contains 'is invalid'
 
  Examples:
 | email           |

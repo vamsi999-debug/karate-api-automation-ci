@@ -42,7 +42,36 @@ pipeline {
       steps {
         sh '''
           mvn clean test \
-            -Dgorest.token=$GOREST_TOKEN
+          -Dgorest.token=$GOREST_TOKEN
+        '''
+      }
+    }
+
+    stage('Install Python for TRCLI') {
+      steps {
+        sh '''
+          apt-get update
+          apt-get install -y --no-install-recommends python3 python3-pip ca-certificates
+          python3 --version
+          pip3 --version
+        '''
+      }
+    }
+
+    stage('Publish Results to TestRail') {
+      steps {
+        sh '''
+          python3 -m pip install --upgrade pip
+          python3 -m pip install --upgrade trcli
+
+          trcli --url "$TESTRAIL_URL" \
+                --user "$TESTRAIL_USER" \
+                --key "$TESTRAIL_KEY" \
+                --project "$TESTRAIL_PROJECT" \
+                --suite "$TESTRAIL_SUITE" \
+                --run-name "Karate API Run - ${JOB_NAME} #${BUILD_NUMBER}" \
+                --results "target/surefire-reports/*.xml" \
+                --close-run
         '''
       }
     }

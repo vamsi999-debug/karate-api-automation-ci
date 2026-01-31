@@ -121,13 +121,13 @@ Feature:  Working on User Details
 
  Scenario: Validate deleted users
 
- * def deletedUser = call read('classpath:features/Users/deleteUser.feature@deleteUser')
-  * def id = deletedUser.id
-  * print id
-  * path 'public', 'v2', 'users', id
-  * method get
-  * status 404
-  * match each response[*].message contains 'Resource not found'
+    * def deletedUser = call read('classpath:features/Users/deleteUser.feature@deleteUser')
+    * def id = deletedUser.id
+    * print id
+    * path 'public', 'v2', 'users', id
+    * method get
+    * status 404
+    * match each response[*].message contains 'Resource not found'
 
 
 
