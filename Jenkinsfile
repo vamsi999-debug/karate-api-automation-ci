@@ -54,13 +54,12 @@ pipeline {
       }
     }
 
-    stage('Install Python for TRCLI') {
+    stage('Install Python and venv for TRCLI') {
       steps {
         sh '''
           apt-get update
-          apt-get install -y --no-install-recommends python3 python3-pip ca-certificates
+          apt-get install -y --no-install-recommends python3 python3-venv ca-certificates
           python3 --version
-          pip3 --version
         '''
       }
     }
@@ -68,6 +67,13 @@ pipeline {
     stage('Publish Results to TestRail') {
       steps {
         sh '''
+        # Create isolated python environment so pip installs are allowed (PEP 668 safe)
+        python3 -m venv .venv
+
+        # Use venv python/pip
+          . .venv/bin/activate
+
+        # Upgrade pip inside venv and install TRCLI
           python3 -m pip install --upgrade pip
           python3 -m pip install --upgrade trcli
 
