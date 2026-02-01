@@ -34,17 +34,6 @@ pipeline {
       }
     }
 
-    stage('Tooling Info') {
-      steps {
-        sh '''
-          echo "=== JAVA ==="
-          java -version
-          echo "=== MAVEN ==="
-          mvn -version
-        '''
-      }
-    }
-
     stage('Run Karate Tests') {
       steps {
         sh '''

@@ -69,6 +69,11 @@
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>3.3.0</version>
+          <configuration>
+    <redirectTestOutputToFile>true</redirectTestOutputToFile>
+    <trimStackTrace>true</trimStackTrace>
+    <useModulePath>false</useModulePath>
+  </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>

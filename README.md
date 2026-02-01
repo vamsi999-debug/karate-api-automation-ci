@@ -64,6 +64,6 @@ Tests can be executed locally using Maven:
 mvn clean test -Dgorest.token=YOUR_TOKEN
 we can get our own access token from **https://gorest.co.in/** an generate a new one
 
-**##Refrences**
+**##References**
 https://docs.karatelabs.io/getting-started/why-karate
 https://support.testrail.com/hc/en-us/articles/13774852916628-Integrating-with-Jenkins-pipeline
