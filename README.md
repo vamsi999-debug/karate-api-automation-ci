@@ -67,3 +67,12 @@ we can get our own access token from **https://gorest.co.in/** an generate a new
 **##References**
 https://docs.karatelabs.io/getting-started/why-karate
 https://support.testrail.com/hc/en-us/articles/13774852916628-Integrating-with-Jenkins-pipeline
+
+**## Screenshots**
+**## Jenkins Build Status**
+<img width="1366" height="768" alt="Jenkins Build" src="https://github.com/user-attachments/assets/6bbdb6a1-8dc7-47f4-b54f-ec23a134cc08" />
+## Test Report in Jenkins test tab
+<img width="1366" height="768" alt="Jenkins Build1" src="https://github.com/user-attachments/assets/5e7e64da-375e-462a-a953-b005243ef1af" />
+## Test Rail Reports from jenkins
+<img width="1366" height="768" alt="TestRail" src="https://github.com/user-attachments/assets/ac6eb779-bf72-48b1-8ffb-b3767c9fe246" />
+<img width="1366" height="768" alt="TestRail1" src="https://github.com/user-attachments/assets/78602fd8-8868-4ea8-9f6e-23bcab274179" />
