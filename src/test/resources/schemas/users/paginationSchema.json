@@ -1,0 +1,8 @@
+{
+"total" : "#number",
+"pages" : "#number",
+"page" : "#number",
+"limit" : "#number",
+"links" : "#object"
+
+}
