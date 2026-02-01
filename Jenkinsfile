@@ -82,6 +82,7 @@ pipeline {
                 --username "$TESTRAIL_USER" \
                 --password "$TESTRAIL_KEY" \
                 --project "$TESTRAIL_PROJECT" \
+                --config testrail.yml\
                 parse_junit \
                 -f "target/surefire-reports/*.xml" \
                 --no-auto-create \
