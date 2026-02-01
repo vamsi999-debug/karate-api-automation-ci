@@ -10,8 +10,7 @@ Background:
     #================================================
 
 @createUser
-@C38
-Scenario: Create user (reusable)
+Scenario: C38 Create user (reusable)
   # pass whatever came in; if nothing came, __arg is empty and factory uses defaults
   * def args = karate.get('__arg', {})
   * def build = call read('classpath:features/helpers/userPayloadFactory.feature@payloadFactory') args
