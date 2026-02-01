@@ -85,7 +85,6 @@ pipeline {
                 --config testrail.yml\
                 parse_junit \
                 -f "target/surefire-reports/*.xml" \
-                --no-auto-create \
                 --title "Karate API Run - ${JOB_NAME} #${BUILD_NUMBER}" \
                 --close-run
 
